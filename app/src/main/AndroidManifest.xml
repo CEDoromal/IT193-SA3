@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,27 @@
         android:theme="@style/Theme.Group6_Project"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".EditDog"
+            android:exported="false" />
+        <activity
+            android:name=".ViewDog"
+            android:exported="false" />
+        <activity
+            android:name=".NewDog"
+            android:exported="false" />
+        <activity
+            android:name=".AddDogs"
+            android:exported="false" />
+        <activity
+            android:name=".CustomListView"
+            android:exported="false" />
+        <activity
+            android:name=".DogList"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

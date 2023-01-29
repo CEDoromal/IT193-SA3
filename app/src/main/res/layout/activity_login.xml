@@ -5,108 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
-    tools:context=".MainActivity">
+    tools:context=".LogIn">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="casual"
-        android:text="Enter Username"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_title" />
-
-    <EditText
-        android:id="@+id/form_textFieldUserName"
-        android:layout_width="0dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/text_input_design"
-        android:ems="10"
-        android:fontFamily="casual"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_title" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="48dp"
-        android:fontFamily="casual"
-        android:text="Set Admin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_textFieldUserName" />
-
-    <EditText
-        android:id="@+id/form_textFieldEmail"
-        android:layout_width="0dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/text_input_design"
-        android:ems="10"
-        android:fontFamily="casual"
-        android:hint="Email"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_textFieldUserName" />
-
-    <Button
-        android:id="@+id/btnsub"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="70dp"
-        android:background="@drawable/bone"
-        android:fontFamily="casual"
-        android:text="ADD ACCOUNT"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_textFieldEmail" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Already have an account?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnsub" />
-
-    <Button
-        android:id="@+id/btnloginview"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:background="@drawable/bone"
-        android:backgroundTint="@color/orange"
-        android:fontFamily="casual"
-        android:text="LOGIN"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/app_title"
+        android:id="@+id/app_title2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -121,8 +23,79 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/username_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="casual"
+        android:text="Username"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_title2" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/text_input_design"
+        android:ems="10"
+        android:fontFamily="casual"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_title2" />
+
+    <Button
+        android:id="@+id/btnlogin"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/bone"
+        android:fontFamily="casual"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="casual"
+        android:text="Don't have an account yet?"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnlogin" />
+
+    <Button
+        android:id="@+id/btnregister"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/bone"
+        android:fontFamily="casual"
+        android:text="Register"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
     <ImageView
-        android:id="@+id/paw_bg"
+        android:id="@+id/paw_bg2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"

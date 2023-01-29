@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Group6_Project</string>
+    <string name="app_title">Adapt a dog</string>
+    <string-array name="dog_list">
+        <item>Dog 1</item>
+        <item>Dog 2</item>
+    </string-array>
 </resources>

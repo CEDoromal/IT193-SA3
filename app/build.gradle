@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "group6.sa3"
-        minSdk 33
+        minSdk 28
         targetSdk 33
         versionCode 1
         versionName "1.0"

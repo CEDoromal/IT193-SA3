@@ -7,18 +7,28 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
+
+    Boolean isAdmin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
-        Button loginBtn = (Button) findViewById(R.id.btnloginview);
+        Button loginBtn = (Button) findViewById(R.id.btnlogin);
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Login.class));
+                if (isAdmin)
+                {
+                    startActivity(new Intent(Login.this, AddDogs.class));
+                }
+                else
+                {
+                    startActivity(new Intent(Login.this, DogList.class));
+                }
             }
         });
     }
