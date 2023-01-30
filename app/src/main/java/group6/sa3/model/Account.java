@@ -8,13 +8,13 @@ public class Account {
 
 
     private String username;
-    private boolean isAdmin;
+    private boolean admin;
 
     public Account(){}
 
-    public Account(String username, boolean isAdmin) {
+    public Account(String username, boolean admin) {
         this.username = username;
-        this.isAdmin = isAdmin;
+        this.admin = admin;
     }
 
     public String getUsername() {
@@ -26,18 +26,18 @@ public class Account {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 79 * hash + Objects.hashCode(this.username);
-        hash = 79 * hash + + Objects.hashCode(this.isAdmin);
+        hash = 79 * hash + + Objects.hashCode(this.admin);
         return hash;
     }
 
@@ -56,6 +56,6 @@ public class Account {
         if (!Objects.equals(this.username, other.username)) {
             return false;
         }
-        return Objects.equals(this.isAdmin, other.isAdmin);
+        return Objects.equals(this.admin, other.admin);
     }
 }
