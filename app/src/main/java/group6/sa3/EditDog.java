@@ -10,6 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import group6.sa3.model.Dog;
 import group6.sa3.retrofit.DogApi;
@@ -48,15 +52,29 @@ public class EditDog extends AppCompatActivity {
         editVacc.setText(dog.getVaccinated());
         editTrait.setText(dog.getTraits());
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
         btnDelete.setOnClickListener(view -> {
             dogApi.deleteDog(dog.getId())
                     .enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
-                            Toast.makeText(EditDog.this, "Dog Record Successfully Deleted", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
+                            dogApi.getAllDog()
+                                            .enqueue(new Callback<List<Dog>>() {
+                                                @Override
+                                                public void onResponse(Call<List<Dog>> call, Response<List<Dog>> response) {
+                                                    SharedPreferences.Editor editor = sharedPref.edit();
+                                                    editor.putString("DogList", gson.toJson(response.body()));
+                                                    Toast.makeText(EditDog.this, "Dog Record Successfully Deleted", Toast.LENGTH_SHORT).show();
+                                                    finish();
+                                                }
 
+                                                @Override
+                                                public void onFailure(Call<List<Dog>> call, Throwable t) {
+                                                    Toast.makeText(EditDog.this, "Dog List Refresh Failed", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                        }
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
                             Toast.makeText(EditDog.this, "Dog Record Deletion Failed", Toast.LENGTH_SHORT).show();
@@ -76,7 +94,21 @@ public class EditDog extends AppCompatActivity {
                     .enqueue(new Callback<Dog>() {
                         @Override
                         public void onResponse(Call<Dog> call, Response<Dog> response) {
-                            Toast.makeText(EditDog.this, "Dog Record Successfully Updated", Toast.LENGTH_SHORT).show();
+                            dogApi.getAllDog()
+                                    .enqueue(new Callback<List<Dog>>() {
+                                        @Override
+                                        public void onResponse(Call<List<Dog>> call, Response<List<Dog>> response) {
+                                            SharedPreferences.Editor editor = sharedPref.edit();
+                                            editor.putString("DogList", gson.toJson(response.body()));
+                                            Toast.makeText(EditDog.this, "Dog Record Successfully Updated", Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<List<Dog>> call, Throwable t) {
+                                            Toast.makeText(EditDog.this, "Dog List Refresh Failed", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
                         }
 
                         @Override

@@ -32,16 +32,21 @@ public class AddDogs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_dogs);
 
+
         final Button addDogButton = (Button) findViewById(R.id.btnadddog);
 
+        Gson gson = new Gson();
+
         addDogButton.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(), NewDog.class));
+            Intent intent = new Intent(getApplicationContext(), NewDog.class);
+            startActivity(intent);
         });
     }
 
     @Override
     protected void onResume() {
         final RetrofitService retrofitService = new RetrofitService();
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
 
         final Gson gson = new Gson();
@@ -50,7 +55,6 @@ public class AddDogs extends AppCompatActivity {
                 .enqueue(new Callback<List<Dog>>() {
                     @Override
                     public void onResponse(Call<List<Dog>> call, Response<List<Dog>> response) {
-                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putString("DogList", gson.toJson(response.body()));
                         editor.commit();
@@ -62,7 +66,6 @@ public class AddDogs extends AppCompatActivity {
                     }
                 });
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         List<Dog> dogList = gson.fromJson(sharedPref.getString("DogList", (gson.toJson(new ArrayList<Dog>()))), new TypeToken<List<Dog>>() {}.getType());
 
         String[] dogNames = dogList.stream().map(dog -> dog.getName()).toArray(size -> new String[size]);
@@ -78,9 +81,12 @@ public class AddDogs extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), EditDog.class);
                 Gson gson = new Gson();
                 intent.putExtra("Dog", gson.toJson(dogList.get(position)));
+                intent.putExtra("DogList", gson.toJson(dogList));
                 startActivity(intent);
             }
         });
+
+
         super.onResume();
     }
 
