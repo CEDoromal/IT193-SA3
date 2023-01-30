@@ -65,6 +65,7 @@ public class EditDog extends AppCompatActivity {
                                                 public void onResponse(Call<List<Dog>> call, Response<List<Dog>> response) {
                                                     SharedPreferences.Editor editor = sharedPref.edit();
                                                     editor.putString("DogList", gson.toJson(response.body()));
+                                                    editor.commit();
                                                     Toast.makeText(EditDog.this, "Dog Record Successfully Deleted", Toast.LENGTH_SHORT).show();
                                                     finish();
                                                 }
@@ -100,8 +101,8 @@ public class EditDog extends AppCompatActivity {
                                         public void onResponse(Call<List<Dog>> call, Response<List<Dog>> response) {
                                             SharedPreferences.Editor editor = sharedPref.edit();
                                             editor.putString("DogList", gson.toJson(response.body()));
+                                            editor.commit();
                                             Toast.makeText(EditDog.this, "Dog Record Successfully Updated", Toast.LENGTH_SHORT).show();
-                                            finish();
                                         }
 
                                         @Override
