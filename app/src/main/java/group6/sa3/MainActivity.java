@@ -30,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText personName = (EditText) findViewById(R.id.editTextTextPersonName);
         final Button loginBtn = (Button) findViewById(R.id.btnlogin);
+        final Button registerBtn = (Button) findViewById(R.id.btnregister);
 
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final RetrofitService retrofitService = new RetrofitService();
         final AccountApi accountApi = retrofitService.getRetrofit().create(AccountApi.class);
+
 
         loginBtn.setOnClickListener(view -> {
             accountApi.getAccount(personName.getText().toString())
@@ -58,5 +60,33 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
         });
+
+        registerBtn.setOnClickListener(view -> {
+            accountApi.addAccount(new Account(personName.getText().toString(), false))
+                    .enqueue(new Callback<Account>() {
+                        @Override
+                        public void onResponse(Call<Account> call, Response<Account> response) {
+
+                            if(response.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                Gson gson = new Gson();
+                                editor.putString("activeAccount", gson.toJson(response.body()));
+                                editor.commit();
+                                startActivity(new Intent(getApplicationContext(), Home.class));
+                            } else {
+                                Toast.makeText(MainActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Account> call, Throwable t) {
+                            Toast.makeText(MainActivity.this, "Registration Failed", Toast.LENGTH_LONG).show();
+                        }
+                    });
+        });
+
+
     }
 }
