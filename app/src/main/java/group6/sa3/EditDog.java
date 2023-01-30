@@ -67,7 +67,7 @@ public class EditDog extends AppCompatActivity {
                                                     editor.putString("DogList", gson.toJson(response.body()));
                                                     editor.commit();
                                                     Toast.makeText(EditDog.this, "Dog Record Successfully Deleted", Toast.LENGTH_SHORT).show();
-                                                    finish();
+                                                    //finish();
                                                 }
 
                                                 @Override
@@ -81,7 +81,7 @@ public class EditDog extends AppCompatActivity {
                             Toast.makeText(EditDog.this, "Dog Record Deletion Failed", Toast.LENGTH_SHORT).show();
                         }
                     });
-            finish();
+
         });
 
         btnSubmit.setOnClickListener(view -> {
