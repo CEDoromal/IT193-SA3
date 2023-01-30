@@ -24,6 +24,9 @@
             android:name=".EditDog"
             android:exported="false" />
         <activity
+            android:name=".Home"
+            android:exported="false" />
+        <activity
             android:name=".ViewDog"
             android:exported="false" />
         <activity
