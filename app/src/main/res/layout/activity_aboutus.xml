@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow"
+    tools:context=".AboutUs">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="casual"
+        android:text="About Us"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="309dp"
+        android:layout_height="419dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="casual"
+        android:text="We will assist in helping our adopted dogs in finding a welcoming home. To adopt and check the dogs available for adoption, we require you to proceed with setting up an account. We want to protect the security of our center in identifying interested adopters by recording their personal information. Rest assured; every detail is confidential.
+                    \n \nWe are dedicated to finding loving homes for all of our furry friends. Each one of our animals has their own unique personality and needs, and we are here to help match them with the perfect forever family. Whether you are looking for a new companion or simply want to support our mission, we are happy to have you here. Thank you for considering adoption as an option and giving one of our animals a second chance at a loving home."
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+</androidx.constraintlayout.widget.ConstraintLayout>
