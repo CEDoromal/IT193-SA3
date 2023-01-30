@@ -67,7 +67,7 @@ public class EditDog extends AppCompatActivity {
 
         btnSubmit.setOnClickListener(view -> {
             dog.setName(editName.getText().toString());
-            dog.setBreed(editName.getText().toString());
+            dog.setBreed(editBreed.getText().toString());
             dog.setAge(Integer.parseInt(editAge.getText().toString()));
             dog.setColor(editColor.getText().toString());
             dog.setVaccinated(editVacc.getText().toString());

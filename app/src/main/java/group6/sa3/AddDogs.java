@@ -41,6 +41,7 @@ public class AddDogs extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        super.onResume();
         final RetrofitService retrofitService = new RetrofitService();
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
@@ -80,7 +81,6 @@ public class AddDogs extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        super.onResume();
     }
 
 
