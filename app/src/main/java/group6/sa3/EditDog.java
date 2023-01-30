@@ -39,7 +39,7 @@ public class EditDog extends AppCompatActivity {
         DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
 
         Gson gson = new Gson();
-        Dog dog = gson.fromJson(getIntent().getExtras().getString("DogName"), Dog.class);
+        Dog dog = gson.fromJson(getIntent().getExtras().getString("Dog"), Dog.class);
 
         editName.setText(dog.getName());
         editBreed.setText(dog.getBreed());
