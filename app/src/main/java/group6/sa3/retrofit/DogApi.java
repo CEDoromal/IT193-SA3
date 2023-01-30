@@ -16,7 +16,7 @@ public interface DogApi {
     Call <List<Dog>> getAllDog();
 
     @GET ("/dogs/{id}")
-    Call <Dog> getDog(@Path("id") int id);
+    Call <Dog> getDog(@Path("id") long id);
 
     @POST ("/add-dog")
     Call <Dog> addDog(@Body Dog dog);
@@ -25,5 +25,5 @@ public interface DogApi {
     Call <Dog> updateDog(@Body Dog dog);
 
     @DELETE ("/remove-dog/{id}")
-    Call <Void> deleteDog(@Path("id") int id);
+    Call <Void> deleteDog(@Path("id") long id);
 }

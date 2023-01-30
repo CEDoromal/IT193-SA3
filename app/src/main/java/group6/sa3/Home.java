@@ -42,8 +42,8 @@ public class Home extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onDestroy() {
         logout();
-        super.onBackPressed();
+        super.onDestroy();
     }
 }

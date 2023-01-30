@@ -34,12 +34,15 @@ public class DogList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dog_list);
+    }
 
+    @Override
+    protected void onResume() {
         final RetrofitService retrofitService = new RetrofitService();
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
 
-        Gson gson = new Gson();
+        final Gson gson = new Gson();
 
         dogApi.getAllDog()
                 .enqueue(new Callback<List<Dog>>() {
@@ -74,5 +77,7 @@ public class DogList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        super.onResume();
     }
+
 }
