@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                                 Gson gson = new Gson();
                                 editor.putString("activeAccount", gson.toJson(response.body()));
                                 editor.commit();
-                                startActivity(new Intent(getApplicationContext(), DogList.class));
+                                startActivity(new Intent(getApplicationContext(), Home.class));
                             } else {
                                 Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                             }

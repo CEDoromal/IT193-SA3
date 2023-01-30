@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow">
+    android:background="@color/yellow"
+    tools:context=".Home">
 
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="211dp"
         android:layout_height="65dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginBottom="81dp"
         android:background="@drawable/bone"
         android:fontFamily="casual"
         android:text="Logout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/abtBttn" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
