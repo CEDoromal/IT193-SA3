@@ -32,10 +32,14 @@ public class AddDogs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_dogs);
 
+
         final Button addDogButton = (Button) findViewById(R.id.btnadddog);
 
+        Gson gson = new Gson();
+
         addDogButton.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(), NewDog.class));
+            Intent intent = new Intent(getApplicationContext(), NewDog.class);
+            startActivity(intent);
         });
     }
 
@@ -77,9 +81,12 @@ public class AddDogs extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), EditDog.class);
                 Gson gson = new Gson();
                 intent.putExtra("Dog", gson.toJson(dogList.get(position)));
+                intent.putExtra("DogList", gson.toJson(dogList));
                 startActivity(intent);
             }
         });
+
+
         super.onResume();
     }
 
