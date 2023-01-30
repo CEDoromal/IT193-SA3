@@ -3,7 +3,9 @@ package group6.sa3;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -23,6 +25,8 @@ public class ViewDog extends AppCompatActivity {
         TextView dogColorDisplay = (TextView) findViewById(R.id.dogColorDisplay);
         TextView dogVaccDisplay = (TextView) findViewById(R.id.dogVaccDisplay);
         TextView dogTraitDisplay = (TextView) findViewById(R.id.dogTraitDisplay);
+        final Button buttonApply = (Button) findViewById(R.id.btnApply);
+        final Button buttonBack1 = (Button) findViewById(R.id.btnBack);
 
         Gson gson = new Gson();
         Dog dog = gson.fromJson(getIntent().getExtras().getString("Dog"), Dog.class);
@@ -34,5 +38,14 @@ public class ViewDog extends AppCompatActivity {
         dogColorDisplay.setText("Color: " + dog.getColor());
         dogVaccDisplay.setText("Vaccinated: " + dog.getVaccinated());
         dogTraitDisplay.setText("Trait: " + dog.getTraits());
+
+        buttonApply.setOnClickListener(view -> {
+            Toast.makeText(this, "You have successfully applied for adoption", Toast.LENGTH_LONG).show();
+        });
+
+        buttonBack1.setOnClickListener(view -> {
+            finish();
+        });
+
     }
 }
