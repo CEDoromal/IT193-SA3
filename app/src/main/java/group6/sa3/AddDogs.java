@@ -41,9 +41,7 @@ public class AddDogs extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        super.onResume();
         final RetrofitService retrofitService = new RetrofitService();
-        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         final DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
 
         final Gson gson = new Gson();
@@ -52,6 +50,7 @@ public class AddDogs extends AppCompatActivity {
                 .enqueue(new Callback<List<Dog>>() {
                     @Override
                     public void onResponse(Call<List<Dog>> call, Response<List<Dog>> response) {
+                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putString("DogList", gson.toJson(response.body()));
                         editor.commit();
@@ -63,6 +62,7 @@ public class AddDogs extends AppCompatActivity {
                     }
                 });
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         List<Dog> dogList = gson.fromJson(sharedPref.getString("DogList", (gson.toJson(new ArrayList<Dog>()))), new TypeToken<List<Dog>>() {}.getType());
 
         String[] dogNames = dogList.stream().map(dog -> dog.getName()).toArray(size -> new String[size]);
@@ -81,6 +81,7 @@ public class AddDogs extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        super.onResume();
     }
 
 
