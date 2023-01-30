@@ -9,10 +9,10 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface UserApi {
-    @GET ("/")
-    Call <List<Account>> getAllUsers();
+public interface AccountApi {
+    @GET ("/account/{username}")
+    Call <Account> getAccount(String username);
 
     @POST("/add-account")
-    Call <Account> save(@Body Account account);
+    Call <Account> addAccount(@Body Account account);
 }
