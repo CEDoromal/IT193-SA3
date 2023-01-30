@@ -3,32 +3,67 @@ package group6.sa3;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class DogList extends AppCompatActivity {
-    String dogNameList[] = {"Dog 1", "Dog 2", "Dog 3"};
-    String dogBreedList[] = {"German Shepherd", "Bulldog", "Labrador Retriever"};
+import com.google.gson.Gson;
 
-    ListView listView;
+import java.util.ArrayList;
+import java.util.List;
+
+import group6.sa3.model.Dog;
+import group6.sa3.retrofit.DogApi;
+import group6.sa3.retrofit.RetrofitService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class DogList extends AppCompatActivity {
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dog_list);
 
-        listView = findViewById(R.id.dog_list);
-        CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplicationContext(), dogNameList, dogBreedList);
+        final RetrofitService retrofitService = new RetrofitService();
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        final DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
+
+        Gson gson = new Gson();
+
+        dogApi.getAllDog()
+                .enqueue(new Callback<List<Dog>>() {
+                    @Override
+                    public void onResponse(Call<List<Dog>> call, Response<List<Dog>> response) {
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("DogList", gson.toJson(response.body()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Dog>> call, Throwable t) {
+                        Toast.makeText(DogList.this, "Error Retrieving Dog List", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        List<Dog> dogList = gson.fromJson(sharedPref.getString("DogList", (gson.toJson(new ArrayList<Dog>()))), ArrayList.class);
+
+        ListView listView = (ListView) findViewById(R.id.dog_list);
+        CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplicationContext(), dogList);
         listView.setAdapter(customBaseAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(DogList.this, ViewDog.class);
-                intent.putExtra("DogName", dogNameList[position]);
-                intent.putExtra("DogBreed", dogBreedList[position]);
+                Intent intent = new Intent(getApplicationContext(), ViewDog.class);
+                Gson gson = new Gson();
+                intent.putExtra("Dog", gson.toJson(dogList.get(position)));
                 startActivity(intent);
             }
         });

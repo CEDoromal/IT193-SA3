@@ -50,7 +50,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogColorDisplay3" />
+        app:layout_constraintTop_toBottomOf="@+id/dogTraitDisplay" />
 
     <Button
         android:id="@+id/btnBack"
@@ -137,7 +137,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dogAgeDisplay" />
 
     <TextView
-        android:id="@+id/dogColorDisplay2"
+        android:id="@+id/dogVaccDisplay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -151,7 +151,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dogColorDisplay" />
 
     <TextView
-        android:id="@+id/dogColorDisplay3"
+        android:id="@+id/dogTraitDisplay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -162,5 +162,5 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogColorDisplay2" />
+        app:layout_constraintTop_toBottomOf="@+id/dogVaccDisplay" />
 </androidx.constraintlayout.widget.ConstraintLayout>

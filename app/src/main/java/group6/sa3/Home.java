@@ -10,8 +10,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Home extends AppCompatActivity {
 
+    private void logout() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove("activeAccount");
+        editor.commit();
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -19,7 +26,6 @@ public class Home extends AppCompatActivity {
         final Button adoptNow = (Button) findViewById(R.id.adoptbttn);
         final Button outButton = (Button) findViewById(R.id.logoutButton);
 
-        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         aboutButton.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), AboutUs.class));
@@ -30,11 +36,14 @@ public class Home extends AppCompatActivity {
         });
 
         outButton.setOnClickListener(view -> {
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.remove("activeAccount");
+            logout();
             finish();
         });
-
     }
 
+    @Override
+    public void onBackPressed() {
+        logout();
+        super.onBackPressed();
+    }
 }

@@ -7,32 +7,34 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
+import group6.sa3.model.Dog;
+
 public class CustomBaseAdapter extends BaseAdapter {
     Context context;
-    String listDogName[];
-    String listDogBreed[];
+    List<Dog> dogList;
     LayoutInflater inflater;
 
-    public CustomBaseAdapter(Context ctx, String[] dogNameList, String[] dogBreedList){
+    public CustomBaseAdapter(Context ctx, List<Dog> dogList){
         this.context = ctx;
-        this.listDogName = dogNameList;
-        this.listDogBreed = dogBreedList;
+        this.dogList = dogList;
         this.inflater = LayoutInflater.from(ctx);
     }
 
     @Override
     public int getCount() {
-        return listDogName.length;
+        return dogList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return dogList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return dogList.get(position).getId();
     }
 
     @Override
@@ -40,8 +42,8 @@ public class CustomBaseAdapter extends BaseAdapter {
         convertView = inflater.inflate(R.layout.activity_custom_list_view, null);
         TextView dogNameTxt = (TextView) convertView.findViewById(R.id.dog_name);
         TextView dogBreedTxt = (TextView) convertView.findViewById(R.id.dog_breed);
-        dogNameTxt.setText(listDogName[position]);
-        dogBreedTxt.setText(listDogBreed[position]);
+        dogNameTxt.setText(dogList.get(position).getName());
+        dogBreedTxt.setText(dogList.get(position).getName());
         return convertView;
     }
 }
