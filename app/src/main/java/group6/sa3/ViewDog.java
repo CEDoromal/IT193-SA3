@@ -16,6 +16,7 @@ public class ViewDog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_dog);
 
+        TextView dogName = (TextView) findViewById(R.id.dogName);
         TextView dogNameDisplay = (TextView) findViewById(R.id.dogNameDisplay);
         TextView dogBreedDisplay = (TextView) findViewById(R.id.dogBreedDisplay);
         TextView dogAgeDisplay = (TextView) findViewById(R.id.dogAgeDisplay);
@@ -26,11 +27,12 @@ public class ViewDog extends AppCompatActivity {
         Gson gson = new Gson();
         Dog dog = gson.fromJson(getIntent().getExtras().getString("Dog"), Dog.class);
 
-        dogNameDisplay.setText(dog.getName());
-        dogBreedDisplay.setText(dog.getBreed());
-        dogAgeDisplay.setText(String.valueOf(dog.getAge()));
-        dogColorDisplay.setText(dog.getColor());
-        dogVaccDisplay.setText(dog.getVaccinated());
-        dogTraitDisplay.setText(dog.getTraits());
+        dogName.setText(dog.getName());
+        dogNameDisplay.setText("Name: " + dog.getName());
+        dogBreedDisplay.setText("Breed: " + dog.getBreed());
+        dogAgeDisplay.setText("Age: " + String.valueOf(dog.getAge()));
+        dogColorDisplay.setText("Color: " + dog.getColor());
+        dogVaccDisplay.setText("Vaccinated: " + dog.getVaccinated());
+        dogTraitDisplay.setText("Trait: " + dog.getTraits());
     }
 }

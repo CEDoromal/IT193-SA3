@@ -12,9 +12,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import group6.sa3.model.Dog;
 import group6.sa3.retrofit.DogApi;
@@ -44,6 +47,7 @@ public class DogList extends AppCompatActivity {
                     public void onResponse(Call<List<Dog>> call, Response<List<Dog>> response) {
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putString("DogList", gson.toJson(response.body()));
+                        editor.commit();
                     }
 
                     @Override
@@ -52,10 +56,13 @@ public class DogList extends AppCompatActivity {
                     }
                 });
 
-        List<Dog> dogList = gson.fromJson(sharedPref.getString("DogList", (gson.toJson(new ArrayList<Dog>()))), ArrayList.class);
+        List<Dog> dogList = gson.fromJson(sharedPref.getString("DogList", (gson.toJson(new ArrayList<Dog>()))), new TypeToken<List<Dog>>() {}.getType());
+
+        String[] dogNames = dogList.stream().map(dog -> dog.getName()).toArray(size -> new String[size]);
+        String[] dogBreeds = dogList.stream().map(dog -> dog.getBreed()).toArray(size -> new String[size]);
 
         ListView listView = (ListView) findViewById(R.id.dog_list);
-        CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplicationContext(), dogList);
+        CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplicationContext(), dogNames, dogBreeds);
         listView.setAdapter(customBaseAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
