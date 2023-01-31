@@ -34,12 +34,17 @@ public class AddDogs extends AppCompatActivity {
 
 
         final Button addDogButton = (Button) findViewById(R.id.btnadddog);
+        final Button logoutBtn3 = (Button) findViewById(R.id.logoutButton3) ;
 
         Gson gson = new Gson();
 
         addDogButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), NewDog.class);
             startActivity(intent);
+        });
+
+        logoutBtn3.setOnClickListener(view -> {
+            finish();
         });
     }
 
