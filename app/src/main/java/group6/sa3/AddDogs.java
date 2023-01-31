@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +57,7 @@ public class AddDogs extends AppCompatActivity {
 
         final Gson gson = new Gson();
 
+        /*
         dogApi.getAllDog()
                 .enqueue(new Callback<List<Dog>>() {
                     @Override
@@ -70,8 +72,23 @@ public class AddDogs extends AppCompatActivity {
                         Toast.makeText(AddDogs.this, "Error Retrieving Dog List", Toast.LENGTH_SHORT).show();
                     }
                 });
+         List<Dog> dogList = gson.fromJson(sharedPref.getString("DogList", (gson.toJson(new ArrayList<Dog>()))), new TypeToken<List<Dog>>() {}.getType());
+         */
 
-        List<Dog> dogList = gson.fromJson(sharedPref.getString("DogList", (gson.toJson(new ArrayList<Dog>()))), new TypeToken<List<Dog>>() {}.getType());
+        //
+
+        List<Dog> responseBody;
+
+        try {
+            responseBody = dogApi.getAllDog().execute().body();
+        } catch (IOException e) {
+            responseBody = new ArrayList<Dog>();
+            Toast.makeText(this, "Failed to get Dog List", Toast.LENGTH_SHORT).show();
+        }
+
+        List<Dog> dogList = responseBody; // needed or else can't be accessed from inner class
+
+        //
 
         String[] dogNames = dogList.stream().map(dog -> dog.getName()).toArray(size -> new String[size]);
         String[] dogBreeds = dogList.stream().map(dog -> dog.getBreed()).toArray(size -> new String[size]);
